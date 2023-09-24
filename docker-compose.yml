@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+    postres:
+        image: postgres:16-alpine
+        environment:
+            POSTGRES_DB: 'travel_club'
+            POSTGRES_PASSWORD: '1q2w3e4r5t'
+        ports:
+            - 5432:5432
