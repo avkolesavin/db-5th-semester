@@ -1,5 +1,10 @@
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+
 import { Tourist } from './tourist';
+import { Guide } from './guide';
+import { TourLogToEquipment } from './tour-log-to-equipment';
+import { Route } from './route';
+import { TourLogToTransport } from './tours-log-to-transport';
 
 @Entity()
 export class ToursLog {
@@ -12,10 +17,20 @@ export class ToursLog {
     @Column('date')
     endDate: string;
 
-    @Column('json')
-    testPoint: number[][];
+    @ManyToOne(() => Route)
+    route: Route;
 
     @ManyToMany(() => Tourist)
-    @JoinTable()
+    @JoinTable({ name: 'tours_logs_to_tourists' })
     tourists: Tourist[];
+
+    @ManyToMany(() => Guide)
+    @JoinTable({ name: 'tours_logs_to_guides' })
+    guides: Guide[];
+
+    @OneToMany(() => TourLogToEquipment, tourLogToEquipment => tourLogToEquipment.tourLog)
+    tourLogToEquipment: TourLogToEquipment[];
+
+    @OneToMany(() => TourLogToTransport, tourLogToTransport => tourLogToTransport.tourLog)
+    tourLogToTransport: TourLogToTransport[];
 }
