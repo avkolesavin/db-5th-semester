@@ -2,9 +2,15 @@ version: '3.8'
 
 services:
     postres:
-        image: postgres:16-alpine
+        image: postgis/postgis
         environment:
             POSTGRES_DB: 'travel_club'
             POSTGRES_PASSWORD: '1q2w3e4r5t'
         ports:
             - 5432:5432
+        volumes:
+            - dbdata:/var/lib/postgresql/data
+            - ./sql:/docker-entrypoint-initdb.d
+
+volumes:
+  dbdata:
