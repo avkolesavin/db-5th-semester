@@ -1,3 +1,12 @@
+DO
+$$
+BEGIN
+    IF EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'check_tour_overlap') THEN
+        DROP TRIGGER check_tour_overlap ON tours_logs_to_tourists;
+    END IF;
+END
+$$;
+
 CREATE OR REPLACE FUNCTION check_tour_overlap() RETURNS TRIGGER AS $$
 DECLARE
     overlaps_count INTEGER;
