@@ -21,7 +21,7 @@ BEGIN
     WHERE tours_log.id = NEW.tour_log_id;
 
     IF equipment_season_id != tour_season_id THEN
-        RAISE NOTICE 'Сезон инвентаря не соответствует сезону похода.';
+        RAISE NOTICE 'Сезон инвентаря не соответствует сезону похода';
     END IF;
 
     RETURN NEW;

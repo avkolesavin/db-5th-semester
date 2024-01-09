@@ -10,7 +10,7 @@ BEGIN
     AND tours_log.end_date >= NEW.start_date;
 
     IF overlaps_count > 0 THEN
-        RAISE EXCEPTION 'Турист уже участвует в другом походе в эти даты.';
+        RAISE EXCEPTION 'Турист уже участвует в другом походе в эти даты';
     END IF;
 
     RETURN NEW;
