@@ -14,6 +14,7 @@ DECLARE
     tour_id INTEGER;
     guide RECORD;
     transports RECORD;
+    tourist_id INTEGER;
 BEGIN
     -- Создание нового похода
     INSERT INTO tours_log (start_date, end_date, route_id)
