@@ -1,15 +1,13 @@
 import { AppDataSource } from './data-source';
-import { Tourist } from './entity';
-import { ToursLog } from './entity/tours-log';
+
+import { seed } from './seed';
 
 (async () => {
     try {
         const ds = await AppDataSource.initialize();
-        const rep = ds.getRepository(ToursLog);
 
         try {
-            const data = await rep.find();
-            console.log('data: ', JSON.stringify(data));
+            await seed(ds);
         } catch (err) {
             console.error(err);
         } finally {
